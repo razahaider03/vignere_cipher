@@ -6,7 +6,10 @@ public class Tester {
     public static void main(String[] args) {
         Tester obj = new Tester();
         // obj.testCaeser();
-        obj.testCaesarCracker();
+        // obj.testCaesarCracker();
+        // obj.testVignereCipher();
+        VigenereBreaker obj1 = new VigenereBreaker();
+        obj1.sliceString("abcdefghijklm", 2, 5);
     }
 
     public void testCaeser() {
@@ -23,6 +26,15 @@ public class Tester {
         String message = fr.asString();
         CaesarCracker obj = new CaesarCracker('a');
         System.out.println(obj.decrypt(message));
+
+    }
+
+    public void testVignereCipher() {
+        FileResource fr = new FileResource("VigenereTestData\\titus-small.txt");
+        String message = fr.asString();
+        int[] key = {17, 14, 12, 4};
+        VigenereCipher obj = new VigenereCipher(key);
+        System.out.println(obj.encrypt(message));
 
     }
 }

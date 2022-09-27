@@ -5,7 +5,7 @@ import java.util.*;
 
 public class VigenereCipher {
     CaesarCipher[] ciphers;
-    
+      
     public VigenereCipher(int[] key) {
         ciphers = new CaesarCipher[key.length];
         for (int i = 0; i < key.length; i++) {
