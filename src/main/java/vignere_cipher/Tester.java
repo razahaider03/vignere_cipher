@@ -8,8 +8,11 @@ public class Tester {
         // obj.testCaeser();
         // obj.testCaesarCracker();
         // obj.testVignereCipher();
+        // VigenereBreaker obj1 = new VigenereBreaker();
+        // obj1.sliceString("abcdefghijklm", 2, 5);
+        // obj.testTryKeyLength();
         VigenereBreaker obj1 = new VigenereBreaker();
-        obj1.sliceString("abcdefghijklm", 2, 5);
+        obj1.breakVigenere();
     }
 
     public void testCaeser() {
@@ -37,4 +40,16 @@ public class Tester {
         System.out.println(obj.encrypt(message));
 
     }
+
+    public void testTryKeyLength() {
+        FileResource fr = new FileResource("VigenereTestData\\secretmessage1.txt");
+        String message = fr.asString();
+        // int[] key = {17, 14, 12, 4};
+        VigenereBreaker obj = new VigenereBreaker();
+        int[] key = obj.tryKeyLength(message,4,'e');
+        for (int i : key) {
+            System.out.println(i);
+        }        
+    }
+
 }

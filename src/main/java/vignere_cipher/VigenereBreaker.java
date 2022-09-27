@@ -19,17 +19,25 @@ public class VigenereBreaker {
     public int[] tryKeyLength(String encrypted, int klength, char mostCommon) {
         int[] key = new int[klength];
         //WRITE YOUR CODE HERE
-        CaesarCracker cc = new CaesarCracker();
-        
-        for (int i = 0; i<klength; i++) {
-            key[i]= cc.getKey(encrypted);
+        CaesarCracker cc = new CaesarCracker(mostCommon);
+        for(int i = 0; i<klength; i++)
+        {
+            String message = sliceString(encrypted, i, klength);
+            // System.out.println(cc.getKey(message));
+            key[i]= cc.getKey(message);
         }
-        int key1 = cc.getKey(encrypted);
+        // System.out.println(key);
         return key;
     }
 
     public void breakVigenere () {
         //WRITE YOUR CODE HERE
+        FileResource encrypt = new FileResource();
+        String message = encrypt.asString();
+        int[] keys = tryKeyLength(message, 4, 'e');
+        VigenereCipher vg = new VigenereCipher(keys);
+        String decrypt = vg.decrypt(message);
+        System.out.println(decrypt);
     }
     
 }
