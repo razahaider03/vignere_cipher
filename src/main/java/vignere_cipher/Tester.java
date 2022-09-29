@@ -1,5 +1,7 @@
 package vignere_cipher;
 
+import java.util.HashSet;
+
 import edu.duke.FileResource;
 
 public class Tester {
@@ -13,6 +15,7 @@ public class Tester {
         // obj.testTryKeyLength();
         VigenereBreaker obj1 = new VigenereBreaker();
         obj1.breakVigenere();
+        // obj.testMostCommonCahrIn();
     }
 
     public void testCaeser() {
@@ -42,14 +45,26 @@ public class Tester {
     }
 
     public void testTryKeyLength() {
-        FileResource fr = new FileResource("VigenereTestData\\secretmessage1.txt");
+        FileResource fr = new FileResource("VigenereTestData\\secretmessage2.txt");
         String message = fr.asString();
         // int[] key = {17, 14, 12, 4};
         VigenereBreaker obj = new VigenereBreaker();
-        int[] key = obj.tryKeyLength(message,4,'e');
+        int[] key = obj.tryKeyLength(message,38,'e');
+        
         for (int i : key) {
             System.out.println(i);
         }        
+    }
+
+    public void testMostCommonCahrIn() {
+        HashSet<String> dictSet = new HashSet<>();
+        FileResource fr = new FileResource();
+        for (String line : fr.lines()) {
+            dictSet.add(line);
+        }
+        VigenereBreaker obj = new VigenereBreaker();
+        obj.mostCommonCharIn(dictSet);
+        
     }
 
 }
